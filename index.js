@@ -26,12 +26,12 @@ var theRottenAPI = function() {
   };
 
   exports.search = function (options, cb) {
-    var q = options.term || null;
+    var q = options.query || options || null;
     var page = options.page || null;
     var pageLimit = options.pageLimit || null;
 
     if ((q === null) || (typeof q !== 'string')) {
-      throw new Error('search term required');
+      throw new Error('invalid type error');
     }
 
     if (page === null) { page = ''; } else { page = '&page=' + page.toString(); }
@@ -45,7 +45,7 @@ var theRottenAPI = function() {
   };
 
   exports.info = function (options, cb) {
-    var id = options.id || null;
+    var id = options.id || options || null;
     var limitTo = options.limitTo || null;
 
     if ((id === null) || (typeof id !== 'number')) {
