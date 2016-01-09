@@ -1,0 +1,26 @@
+{
+  "name": "the-rotten-api",
+  "version": "1.0.0",
+  "description": "A Node.js wrapper for The Rotten Tomatoes API v1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmontalvoriv/the-rotten-api.git"
+  },
+  "keywords": [
+    "rottentomatoes",
+    "api"
+  ],
+  "author": "Gabriel Montalvo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmontalvoriv/the-rotten-api/issues"
+  },
+  "homepage": "https://github.com/gmontalvoriv/the-rotten-api#readme",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
+}
