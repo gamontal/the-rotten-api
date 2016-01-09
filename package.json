@@ -1,7 +1,7 @@
 {
   "name": "the-rotten-api",
   "version": "1.0.0",
-  "description": "A Node.js wrapper for The Rotten Tomatoes API v1.0",
+  "description": "A Node.js wrapper for the Rotten Tomatoes API v1.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

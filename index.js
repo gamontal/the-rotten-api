@@ -21,7 +21,7 @@ var theRottenAPI = function() {
 
     urls = ['http://api.rottentomatoes.com/api/public/v1.0/movies.json?' + 'apikey=' + this.apikey,
             'http://api.rottentomatoes.com/api/public/v1.0/movies/',
-            'http://api.rottentomatoes.com/api/public/v1.0/lists/',
+            'http://api.rottentomatoes.com/api/public/v1.0/lists',
             'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/'];
   };
 
@@ -74,16 +74,20 @@ var theRottenAPI = function() {
     }
   };
 
-  exports.lists = function (options, cb) {
-    var dir = options.directory || null;
-    var list = options.list || null;
+  exports.lists = function (directory, cb) {
+    var dir = directory;
     var url;
 
-    if ((dir === null) || (typeof dir !== 'string') || (list === null) || (typeof list !== 'string')) {
-      throw new Error('directory and list required');
+    if (typeof dir !== 'string') {
+      throw new Error('invalid type error');
     }
 
-    url = urls[2] + dir + '/' + list + '.json?apikey=' + this.apikey;
+    if (dir === '') {
+      url = urls[2] + '.json?apikey=' + this.apikey;
+    } else {
+      url = urls[2]  + '/' + dir + '.json?apikey=' + this.apikey;
+    }
+
     var res = httpGet(url);
 
     if (foundError(res)) { cb(err); return; }
@@ -91,8 +95,9 @@ var theRottenAPI = function() {
   };
 
   exports.movies = function (options, cb) {
-    var list = options.list || null;
+    var list = options.list || options || null;
     var limit = options.limit || null;
+    var page = options.page || null;
     var country = options.country || null;
 
     if ((list === null) || (typeof list !== 'string')) {
@@ -101,13 +106,15 @@ var theRottenAPI = function() {
 
     if (limit === null) { limit = ''; } else { limit = '&limit=' + limit.toString(); }
     if (country === null) { country = ''; } else { country = '&country=' + country; }
+    if (page === null) { page = ''; } else { page = '&page=' + page; }
 
-    url = urls[3] + list + '.json?apikey=' + this.apikey + limit + country;
+    url = urls[3] + list + '.json?apikey=' + this.apikey + limit + page + country;
     var res = httpGet(url);
 
     if (foundError(res)) { cb(err); return; }
-    cb(null, res);
+    cb(null, res.movies);
   };
 
   return exports;
 }();
+
