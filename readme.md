@@ -1,3 +1,5 @@
+## ⚠️ This repository is no longer maintained.
+
 # The Rotten API
 
 `the-rotten-api` is a Node.js wrapper for the [Rotten Tomatoes API v1.0](http://developer.rottentomatoes.com/docs).
